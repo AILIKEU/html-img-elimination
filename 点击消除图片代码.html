@@ -1,0 +1,73 @@
+<font size="" color=""></font><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>点击消除图片</title>
+<style type="text/css">
+	#d1{
+		border:solid red 1px;
+		cursor:crosshair;
+		width:1200px;
+		height:700px;
+	}
+	#d2{
+		position:absolute;
+		top:100px;
+		right:100px;
+	}
+	#p1{
+		font-size:36px;
+		color:red;
+	}
+	#p2{
+		font-size:36px;
+		color:green;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = timerTask;
+	var score = 0;
+	//隔一段时间产生一个图片
+	function timerTask(){
+		//每隔2s产生一个图片
+		var t = window.setInterval("createImg()",1000);
+	}
+	function createImg(){
+		//1.创建一个img对象
+		var img = document.createElement("img");
+		//随机产生一个数字
+		var num = Math.floor(Math.random()*5+1);
+		img.src = "img/"+ num+ ".png"; 
+		//2.得到鼠标点击的位置
+		var imgX = Math.floor(Math.random()*800)+200;
+		var imgY = Math.floor(Math.random()*500)+100;
+		img.style.position = "absolute";
+		img.style.top = imgY+"px";
+		img.style.left = imgX+"px";
+		//3.随机产生图片宽度
+		var randWidth = Math.floor(Math.random()*80+20);
+		img.width = randWidth;0
+		//4.猜想代码
+		//为每一张图片添加一个点击方法
+		img.onclick=function(){           
+			this.parentNode.removeChild(this);
+			var obj = document.getElementById("p2");
+			score++;
+			p2.innerHTML=" "+score+" ";        
+		}
+		var div = document.getElementById("d1");
+		div.appendChild(img);
+		
+	}
+</script>
+</head>
+
+<body >
+	<div id="d1">
+	</div>
+	<div id="d2">
+		<p id="p1">得分</p>
+		<p id="p2"><p>
+	</div>
+</body>
+</html>
